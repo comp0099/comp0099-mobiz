@@ -127,6 +127,11 @@ const translations: Record<Language, any> = {
         message: 'MESSAGE',
         submit: 'Send Message'
       },
+      thankYou: {
+        title: 'THANK YOU!',
+        message: 'Your message has been received. We will get back to you within 3 working days.',
+        btn: 'Send another message'
+      },
       options: ['Select a division...', 'Online Refurbished and Global Smartphones', 'Global Procurement', 'Rental services', 'All Divisions']
     },
     companyProfile: {
@@ -258,6 +263,11 @@ const translations: Record<Language, any> = {
         message: 'メッセージ',
         submit: '送信する'
       },
+      thankYou: {
+        title: 'ありがとうございます！',
+        message: 'メッセージを承りました。通常3営業日以内にご返信いたします。',
+        btn: '別件でお問い合わせ'
+      },
       options: ['事業を選択...', 'リユース・グローバルスマホ販売', 'グローバル調達サービス', 'レンタルサービス', 'すべての事業']
     },
     companyProfile: {
@@ -308,6 +318,8 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const t = translations[lang];
 
@@ -325,11 +337,39 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setToastVisible(true);
-    setTimeout(() => setToastVisible(false), 3000);
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('https://formspree.io/f/mvzlljen', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          _replyto: data.email,
+          _subject: `Contact Form: ${data.name} via Mobiz Website`,
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        alert('There was an issue sending your message. Please try again later.');
+      }
+    } catch (err) {
+      alert('An error occurred. Please check your connection.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -690,39 +730,72 @@ export default function App() {
                     </div>
                   </div>
                   
-                  <form className="flex flex-col gap-4" onSubmit={handleContactSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.name}</label>
-                        <input required type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                  {submitted ? (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-white/4 border border-white/10 rounded-2xl p-10 text-center flex flex-col items-center justify-center min-h-[440px]"
+                    >
+                      <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mb-6">
+                        <CheckCircle2 size={32} className="text-cyan-400" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">{t.contact.thankYou.title}</h3>
+                      <p className="text-white/60 mb-8 max-w-[320px] leading-relaxed">
+                        {t.contact.thankYou.message}
+                      </p>
+                      <button 
+                        onClick={() => setSubmitted(false)}
+                        className="px-6 py-2.5 rounded-xl border border-white/20 text-[0.8rem] font-bold text-white hover:bg-white/5 transition-all cursor-pointer"
+                      >
+                        {t.contact.thankYou.btn}
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <form className="flex flex-col gap-4" onSubmit={handleContactSubmit}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.name}</label>
+                          <input required name="name" type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.company}</label>
+                          <input name="company" type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.email}</label>
+                          <input required name="email" type="email" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.service}</label>
+                          <select required name="service" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 appearance-none cursor-pointer">
+                            {t.contact.options.map((opt: string, idx: number) => (
+                               <option key={idx} value={idx === 0 ? "" : opt} className="bg-navy-light">{opt}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.company}</label>
-                        <input type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.message}</label>
+                        <textarea required name="message" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 min-h-[110px] resize-y"></textarea>
                       </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.email}</label>
-                        <input required type="email" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
-                      </div>
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.service}</label>
-                        <select required className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 appearance-none cursor-pointer">
-                          {t.contact.options.map((opt: string, idx: number) => (
-                             <option key={idx} value={idx === 0 ? "" : idx} className="bg-navy-light">{opt}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.message}</label>
-                      <textarea required className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 min-h-[110px] resize-y"></textarea>
-                    </div>
-                    <button type="submit" className="w-full bg-linear-to-br from-blue-600 to-cyan-500 py-3.5 rounded-xl text-[0.9rem] font-bold text-white transition-opacity hover:opacity-90 shadow-lg shadow-blue-900/20 cursor-pointer">
-                      {t.contact.labels.submit} →
-                    </button>
-                  </form>
+                      <button 
+                        disabled={isSubmitting}
+                        type="submit" 
+                        className={`w-full py-3.5 rounded-xl text-[0.9rem] font-bold text-white transition-all shadow-lg shadow-blue-900/20 flex items-center justify-center gap-2 ${isSubmitting ? 'bg-blue-600/50 cursor-not-allowed' : 'bg-linear-to-br from-blue-600 to-cyan-500 hover:opacity-90 cursor-pointer'}`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            Sending...
+                          </>
+                        ) : (
+                          <>{t.contact.labels.submit} →</>
+                        )}
+                      </button>
+                    </form>
+                  )}
                 </div>
               </section>
             </motion.div>
