@@ -33,41 +33,40 @@ const translations: Record<Language, any> = {
   en: {
     nav: {
       home: 'Home',
-      ecommerce: 'Cross Border EC',
-      logistics: 'Int\'l Logistics',
-      smartphones: 'Smartphones',
+      services: 'Services',
+      company: 'Company Info',
       contact: 'Contact'
     },
     hero: {
       badge: 'Japan\'s Global Business Partner',
       title: 'Your Bridge Between Japan & The World',
-      subtitle: 'Specializing in cross-border ecommerce, international logistics, and smartphone sales — connecting businesses across borders.',
-      btnPrimary: 'Explore Services',
+      subtitle: 'Specializing in online sales of refurbished products, global procurement, and international smartphone distribution.',
+      btnPrimary: 'Explore Divisions',
       btnSecondary: 'Get in Touch'
     },
     stats: [
-      { label: 'Clients Served', value: '500+' },
+      { label: 'Global Suppliers', value: '200+' },
       { label: 'Countries Reached', value: '30+' },
-      { label: 'Orders Fulfilled', value: '10K+' },
-      { label: 'Satisfaction Rate', value: '99%' }
+      { label: 'Products Sold', value: '50K+' },
+      { label: 'Quality Rate', value: '99.9%' }
     ],
     services: {
-      tag: 'WHAT WE DO',
-      title: 'End-to-End Business Solutions',
-      subtitle: 'From sourcing to delivery, we handle every step of your cross-border business operations.',
+      tag: 'OUR DIVISIONS',
+      title: 'Specialized Global<br/>Commerce',
+      subtitle: 'We operate three core divisions focused on quality products and efficient global supply chains.',
       ecommerce: {
-        title: 'Cross Border Ecommerce',
-        description: 'Sell on Amazon JP, Mercari, Yahoo Shopping and more. Full platform setup and multilingual support.',
+        title: 'Online Refurbished Sales',
+        description: 'Selling certified refurbished and used products online. Quality guaranteed sourcing and global fulfillment.',
         link: 'Learn more'
       },
       logistics: {
-        title: 'International Logistics',
-        description: 'Import/export handling, customs clearance, and worldwide door-to-door delivery with tracking.',
+        title: 'Global Procurement',
+        description: 'Procuring products globally from trusted suppliers. Expert sourcing, quality control, and supply chain management.',
         link: 'Learn more'
       },
       smartphones: {
-        title: 'Smartphone Sales',
-        description: 'Buy and sell new and used smartphones. Bulk purchasing, quality inspection, and international shipping.',
+        title: 'Global Smartphone Sales',
+        description: 'Specializing in global smartphone distribution. New and certified pre-owned devices for international markets.',
         link: 'Learn more'
       }
     },
@@ -75,30 +74,41 @@ const translations: Record<Language, any> = {
       tag: 'WHY MOBIZ',
       title: 'Built for Global Commerce',
       items: [
-        { title: 'Japan Market Experts', description: 'Deep knowledge of Japanese platforms, regulations, and consumer behavior.' },
-        { title: 'Bilingual Operations', description: 'Full Japanese and English support across all services and documentation.' },
-        { title: 'End-to-End Service', description: 'From sourcing to customer service — one partner for your entire operation.' },
-        { title: 'Data-Driven Results', description: 'Regular reporting and analytics to continuously grow your business.' }
+        { title: 'Market Experts', description: 'Deep knowledge of global product trends, regulations, and consumer behavior.' },
+        { title: 'Global Sourcing', description: 'Network of trusted suppliers worldwide ensuring the best quality and prices.' },
+        { title: 'Quality Assurance', description: 'Rigorous inspection standards for every refurbished and used product we sell.' },
+        { title: 'Efficient Distribution', description: 'Streamlined global logistics to deliver products quickly and securely.' }
       ]
     },
     contact: {
       tag: 'CONTACT',
       title: 'Let\'s Work Together',
-      subtitle: 'Ready to expand your business globally? Reach out and we\'ll get back to you within 24 hours.',
+      subtitle: 'Interested in our products or services? Reach out and we\'ll get back to you within 24 hours.',
       note: 'English & Japanese Support',
       labels: {
         name: 'FULL NAME',
         email: 'EMAIL',
-        service: 'SERVICE INTEREST',
+        service: 'DIVISION INTEREST',
         message: 'MESSAGE',
         submit: 'Send Message'
       },
-      options: ['Select a service...', 'Cross Border Ecommerce', 'International Logistics', 'Smartphone Sales', 'All Services']
+      options: ['Select a division...', 'Online Refurbished Sales', 'Global Procurement', 'Global Smartphone Sales', 'All Divisions']
+    },
+    companyProfile: {
+      tag: 'COMPANY PROFILE',
+      title: 'Corporate Overview',
+      details: [
+        { label: 'Company Name', value: 'MOBIZ LLC (MOBIZ合同会社)' },
+        { label: 'Headquarters', value: '2-2-15 Hamamatsucho Dia Building 2F, Hamamatsucho, Minato-ku, Tokyo 105-0013' },
+        { label: 'Email', value: 'mobiz.customer@gmail.com' },
+        { label: 'Business Capacity', value: 'Mon-Fri: 10:00 - 17:00' },
+        { label: 'License', value: 'Antique Dealer License: Chiba Prefectural Public Safety Commission No. 441060001263' }
+      ]
     },
     footer: {
-      description: 'Your trusted partner for cross-border business between Japan and the global market.',
+      description: 'Your trusted partner for global procurement and refurbished product sales.',
       columns: [
-        { title: 'Services', links: ['Cross Border EC', 'Int\'l Logistics', 'Smartphones'] },
+        { title: 'Divisions', links: ['Refurbished Sales', 'Global Procurement', 'Global Smartphones'] },
         { title: 'Company', links: ['About Us', 'Careers', 'Blog'] },
         { title: 'Contact', links: ['hello@mobiz.com', 'Japan Office', 'Support'] }
       ],
@@ -109,41 +119,40 @@ const translations: Record<Language, any> = {
   jp: {
     nav: {
       home: 'ホーム',
-      ecommerce: '越境EC',
-      logistics: '国際物流',
-      smartphones: 'スマートフォン',
+      services: 'サービス',
+      company: '会社情報',
       contact: 'お問い合わせ'
     },
     hero: {
-      badge: '日本のグローバルビジネスパートナー',
-      title: '日本と世界をつなぐビジネスパートナー',
-      subtitle: '越境EC・国際物流・スマートフォン販売を専門とし、企業の海外展開を全面サポートします。',
-      btnPrimary: 'サービスを見る',
+      badge: 'グローバルビジネスパートナー',
+      title: '日本と世界をつなぐ、<br>質の高いビジネスを。',
+      subtitle: 'リユース・リフレッシュ品のオンライン販売、グローバルな製品調達、スマートフォンの国際流通を専門としています。',
+      btnPrimary: '事業内容を見る',
       btnSecondary: 'お問い合わせ'
     },
     stats: [
-      { label: '取引企業数', value: '500+' },
+      { label: 'グローバルサプライヤー', value: '200+' },
       { label: '対応国数', value: '30+' },
-      { label: '成約件数', value: '1万件+' },
-      { label: '顧客満足度', value: '99%' }
+      { label: '累計販売数', value: '5万点+' },
+      { label: '品質合格率', value: '99.9%' }
     ],
     services: {
-      tag: 'サービス内容',
-      title: 'ビジネスをトータルサポート',
-      subtitle: '調達から納品まで、越境ビジネスのすべてのプロセスをサポートします。',
+      tag: '事業紹介',
+      title: '質の高い製品を<br/>世界中へ',
+      subtitle: '高品質な製品の提供と効率的なグローバル・サプライチェーンを軸に、3つの事業を展開しています。',
       ecommerce: {
-        title: '越境ECサービス',
-        description: 'Amazon JP・メルカリ・Yahoo!ショッピングなどでの販売をフルサポート。多言語対応。',
+        title: 'リユース品オンライン販売',
+        description: '高品質なリフレッシュ品・中古品のオンライン販売。確かな品質管理とグローバルな配送体制。',
         link: '詳細はこちら'
       },
       logistics: {
-        title: '国際物流サービス',
-        description: '輸出入手続き・通関サポート・日本国内倉庫・ドア・ツー・ドア配送に対応。',
+        title: 'グローバル調達サービス',
+        description: '世界中から最適な製品を調達。サプライヤー選定から品質管理、管理体制の構築まで。',
         link: '詳細はこちら'
       },
       smartphones: {
-        title: 'スマートフォン販売',
-        description: '新品・中古スマートフォンの売買。法人まとめ買い・品質検査・国際発送。',
+        title: 'グローバルスマホ販売',
+        description: '世界市場向けの端末販売と流通を専門。最新のスマホから高品質な中古端末まで。',
         link: '詳細はこちら'
       }
     },
@@ -151,30 +160,41 @@ const translations: Record<Language, any> = {
       tag: '選ばれる理由',
       title: 'グローバルに強いモビズ',
       items: [
-        { title: '日本市場の専門知識', description: '日本のプラットフォーム・規制・消費者行動に関する深い知見。' },
-        { title: 'バイリンガル対応', description: '日本語・英語での完全対応。書類作成からサポートまで。' },
-        { title: 'ワンストップサービス', description: '調達からカスタマー対応まで、ワンストップでサポート。' },
-        { title: 'データ分析と改善', description: '定期レポートと分析で、ビジネスの継続的な成長を支援。' }
+        { title: '市場の専門知識', description: 'グローバルな製品トレンド、規制、消費者行動に関する深い知見。' },
+        { title: 'グローバル調達網', description: '世界中の信頼できるサプライヤーネットワークによる、高品質・低価格の実現。' },
+        { title: '品質保証', description: '販売するすべてのリユース・リフレッシュ品に対する厳格な検査基準。' },
+        { title: '効率的な流通', description: '迅速かつ安全に製品を届ける、最適化されたグローバル物流体制。' }
       ]
     },
     contact: {
       tag: 'お問い合わせ',
       title: '一緒に成長しましょう',
-      subtitle: '海外展開をご検討中ですか？お気軽にご連絡ください。24時間以内にご返信いたします。',
+      subtitle: '製品やサービスにご興味がありますか？お気軽にご連絡ください。24時間以内にご返信いたします。',
       note: '日本語・英語対応',
       labels: {
         name: 'お名前',
         email: 'メールアドレス',
-        service: 'ご興味のサービス',
+        service: 'ご興味の事業',
         message: 'メッセージ',
         submit: '送信する'
       },
-      options: ['サービスを選択...', '越境ECサービス', '国際物流サービス', 'スマートフォン販売', 'すべてのサービス']
+      options: ['事業を選択...', 'リユース品オンライン販売', 'グローバル調達サービス', 'グローバルスマホ販売', 'すべての事業']
+    },
+    companyProfile: {
+      tag: '会社概要',
+      title: '企業情報',
+      details: [
+        { label: '会社名', value: 'MOBIZ LLC (MOBIZ合同会社)' },
+        { label: '所在地', value: '〒105-0013 東京都港区浜松町2-2-15 浜松町ダイヤビル2F' },
+        { label: 'メールアドレス', value: 'mobiz.customer@gmail.com' },
+        { label: '営業時間', value: '月-金: 10:00 - 17:00' },
+        { label: '古物商許可', value: '千葉県公安委員会 第441060001263号' }
+      ]
     },
     footer: {
-      description: '日本と世界をつなぐ、越境ビジネスの信頼できるパートナー。',
+      description: 'グローバル調達とリユース品販売の信頼できるパートナー。',
       columns: [
-        { title: 'サービス', links: ['越境EC', '国際物流', 'スマートフォン'] },
+        { title: '事業内容', links: ['リユース品販売', 'グローバル調達', 'グローバルスマホ'] },
         { title: '会社情報', links: ['会社概要', '採用情報', 'ブログ'] },
         { title: 'お問い合わせ', links: ['hello@mobiz.com', '日本オフィス', 'サポート'] }
       ],
@@ -225,16 +245,36 @@ export default function App() {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-1.5 list-none">
-          {Object.entries(t.nav).filter(([key]) => key !== 'contact').map(([key, label]) => (
-            <li key={key}>
-              <button 
-                onClick={() => navigateTo(key as Page)}
-                className={`text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${currentPage === key ? 'text-white bg-white/10' : 'text-white/70 hover:text-white hover:bg-white/10'}`}
-              >
-                {label as string}
-              </button>
-            </li>
-          ))}
+          <li>
+            <button 
+              onClick={() => navigateTo('home')}
+              className={`text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${currentPage === 'home' ? 'text-white bg-white/10' : 'text-white/70 hover:text-white hover:bg-white/10'}`}
+            >
+              {t.nav.home}
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => {
+                if (currentPage !== 'home') navigateTo('home');
+                setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
+              }}
+              className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+            >
+              {t.nav.services}
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => {
+                if (currentPage !== 'home') navigateTo('home');
+                setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
+              }}
+              className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+            >
+              {t.nav.company}
+            </button>
+          </li>
         </ul>
 
         <div className="flex items-center gap-3">
@@ -255,9 +295,7 @@ export default function App() {
           <button 
             onClick={() => {
               if (currentPage !== 'home') navigateTo('home');
-              setTimeout(() => {
-                document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
+              setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
             }}
             className="hidden md:block px-[18px] py-[8px] rounded-lg bg-linear-to-br from-blue-600 to-cyan-500 text-white text-[0.8rem] font-semibold transition-opacity hover:opacity-85 cursor-pointer"
           >
@@ -281,16 +319,18 @@ export default function App() {
             className="fixed inset-0 z-40 bg-navy pt-24 px-8"
           >
             <ul className="flex flex-col gap-6">
-              {Object.entries(t.nav).map(([key, label]) => (
-                <li key={key}>
-                  <button 
-                    onClick={() => navigateTo(key as Page)}
-                    className="text-xl font-semibold text-white/80 hover:text-white"
-                  >
-                    {label as string}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <button onClick={() => navigateTo('home')} className="text-xl font-semibold text-white/80">{t.nav.home}</button>
+              </li>
+              <li>
+                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.services}</button>
+              </li>
+              <li>
+                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.company}</button>
+              </li>
+              <li>
+                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.contact}</button>
+              </li>
             </ul>
           </motion.div>
         )}
@@ -301,7 +341,7 @@ export default function App() {
         <div className="flex w-max animate-marquee whitespace-nowrap">
           {[1, 2, 3, 4].map(i => (
             <div key={i} className="flex">
-              {['Cross Border Ecommerce', 'International Logistics', 'Smartphone Sales', 'Japan × Global', 'Amazon JP · Mercari · Yahoo!'].map(text => (
+              {['Online Refurbished Sales', 'Global Procurement', 'Global Smartphone Sales', 'Quality Sourcing', 'Global Distribution'].map(text => (
                 <span key={text} className="px-8 text-[0.78rem] font-semibold tracking-[2px] uppercase text-white/30 flex items-center">
                   <span className="text-cyan-400 mr-8">✦</span> {text}
                 </span>
@@ -358,7 +398,7 @@ export default function App() {
                   transition={{ delay: 0.3 }}
                   className="flex gap-3 flex-wrap justify-center relative z-10"
                 >
-                  <button onClick={() => navigateTo('ecommerce')} className="px-7 py-3.5 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-white text-[0.9rem] font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(26,86,219,0.5)] shadow-[0_4px_24px_rgba(26,86,219,0.4)] cursor-pointer">
+                  <button onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })} className="px-7 py-3.5 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-white text-[0.9rem] font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(26,86,219,0.5)] shadow-[0_4px_24px_rgba(26,86,219,0.4)] cursor-pointer">
                     {t.hero.btnPrimary}
                   </button>
                   <button onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })} className="px-7 py-3.5 rounded-xl border border-white/20 text-white text-[0.9rem] font-semibold transition-all hover:bg-white/8 hover:border-white/40 cursor-pointer">
@@ -384,7 +424,7 @@ export default function App() {
               </section>
 
               {/* Services List */}
-              <section className="max-w-[1200px] mx-auto px-[5%] py-[100px]">
+              <section id="services-section" className="max-w-[1200px] mx-auto px-[5%] py-[100px]">
                 <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.services.tag}</div>
                 <h2 className="text-[clamp(1.8rem,3vw,2.8rem)] font-extrabold tracking-tight leading-[1.15] mb-4" dangerouslySetInnerHTML={{ __html: t.services.title }} />
                 <p className="text-base text-white/55 max-w-[520px] mb-14 leading-[1.7]">{t.services.subtitle}</p>
@@ -414,8 +454,8 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Features */}
-              <section className="bg-white/2 border-y border-white/10 px-[5%] py-20">
+              {/* Features as Company Info */}
+              <section id="features-section" className="bg-white/2 border-y border-white/10 px-[5%] py-20">
                 <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
                   <div>
                     <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.features.tag}</div>
@@ -460,6 +500,24 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </section>
+
+              {/* Company Profile Section */}
+              <section id="company-profile-section" className="max-w-[1200px] mx-auto px-[5%] py-[100px] border-t border-white/10">
+                <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.companyProfile.tag}</div>
+                <h2 className="text-[clamp(1.8rem,3vw,2.8rem)] font-extrabold tracking-tight leading-[1.15] mb-10">{t.companyProfile.title}</h2>
+                <div className="bg-white/4 border border-white/10 rounded-2xl overflow-hidden">
+                  {t.companyProfile.details.map((detail: any, idx: number) => (
+                    <div key={idx} className={`grid grid-cols-1 md:grid-cols-[240px_1fr] border-b border-white/10 last:border-0`}>
+                      <div className="bg-white/5 px-8 py-5 text-[0.85rem] font-bold text-slate-300 md:border-r border-white/10 flex items-center">
+                        {detail.label}
+                      </div>
+                      <div className="px-8 py-5 text-[0.85rem] text-white/70 flex items-center leading-relaxed">
+                        {detail.value}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </section>
 
