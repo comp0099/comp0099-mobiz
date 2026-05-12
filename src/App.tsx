@@ -10,6 +10,7 @@ import {
   ShoppingCart, 
   Truck, 
   Smartphone, 
+  Clock,
   ArrowRight, 
   CheckCircle2, 
   Mail, 
@@ -18,12 +19,13 @@ import {
   ChevronRight,
   Menu,
   X,
-  Plus
+  Plus,
+  ExternalLink
 } from 'lucide-react';
 
 // Types
 type Language = 'en' | 'jp';
-type Page = 'home' | 'ecommerce' | 'logistics' | 'smartphones';
+type Page = 'home' | 'ecommerce' | 'logistics' | 'rental';
 
 interface Content {
   [key: string]: string | string[];
@@ -56,9 +58,15 @@ const translations: Record<Language, any> = {
       title: 'Specialized Global<br/>Commerce',
       subtitle: 'We operate three core divisions focused on quality products and efficient global supply chains.',
       ecommerce: {
-        title: 'Online Refurbished Sales',
+        title: 'Online Refurbished and Global Smartphones',
         description: 'Selling certified refurbished and used products online. Quality guaranteed sourcing and global fulfillment.',
         link: 'Learn more',
+        stores: [
+          { name: 'Cellux.jp', url: 'https://cellux.jp' },
+          { name: 'Rakuten', url: 'https://www.rakuten.co.jp/cellux/' },
+          { name: 'Back Market', url: 'https://www.backmarket.co.jp/ja-jp/s/mobizu/c1bae959-084c-48fd-804f-c2b186f0eb7b' },
+          { name: 'Amazon', url: 'https://www.amazon.co.jp/b?node=26286483051&language=en&ie=UTF8&marketplaceID=A1VC38T7YXB528&me=A2KP75Y62GZLJY' }
+        ],
         offerings: [
           { title: 'Certified Refurbishment', desc: 'Rigorous 50-point inspection and restoration by expert technicians.' },
           { title: 'Multi-Platform Sales', desc: 'Strategic presence on Amazon, Rakuten, Back Market, and specialized marketplaces.' },
@@ -81,17 +89,18 @@ const translations: Record<Language, any> = {
           { title: 'Market Intelligence', desc: 'Data-driven insights to identify emerging trends and sourcing opportunities.' }
         ]
       },
-      smartphones: {
-        title: 'Global Smartphone Sales',
-        description: 'Specializing in global smartphone distribution. New and certified pre-owned devices for international markets.',
+      rental: {
+        title: 'Rental services',
+        description: 'Professional rental solutions for smartphones and tablets (Apple, Samsung, etc.) serving both local and global markets. Flexible terms for events, corporate use, and technical testing.',
         link: 'Learn more',
+        contactButton: 'CONTACT FOR MORE DETAILS',
         offerings: [
-          { title: 'International Brands', desc: 'Direct access to the latest models from major global smartphone manufacturers.' },
-          { title: 'Certified Pre-owned', desc: 'High-quality used devices fully tested and backed by our warranty.' },
-          { title: 'Bulk Distribution', desc: 'Scalable wholesale solutions for businesses and retail partners worldwide.' },
-          { title: 'Device Grading', desc: 'Industry-standard grading (A/B/C) providing clear value for every device.' },
-          { title: 'Secure Tech Logistics', desc: 'Specialized handling and insurance for high-value electronic shipments.' },
-          { title: 'Price Analytics', desc: 'Real-time market price tracking to ensure competitive rates for our clients.' }
+          { title: 'Event Rental', desc: 'Large-scale device deployment for conferences and exhibitions.' },
+          { title: 'Corporate Leasing', desc: 'Scalable mobile device solutions for your workforce.' },
+          { title: 'Tech Testing', desc: 'Rental of the latest models for app development and QA testing.' },
+          { title: 'Maintenance', desc: 'Includes complete technical support and device replacement.' },
+          { title: 'Global Delivery', desc: 'Fast shipping to any location with secure packaging.' },
+          { title: 'Flexible Terms', desc: 'Custom rental periods from one day to several months.' }
         ]
       }
     },
@@ -118,7 +127,7 @@ const translations: Record<Language, any> = {
         message: 'MESSAGE',
         submit: 'Send Message'
       },
-      options: ['Select a division...', 'Online Refurbished Sales', 'Global Procurement', 'Global Smartphone Sales', 'All Divisions']
+      options: ['Select a division...', 'Online Refurbished and Global Smartphones', 'Global Procurement', 'Rental services', 'All Divisions']
     },
     companyProfile: {
       tag: 'COMPANY PROFILE',
@@ -147,7 +156,11 @@ const translations: Record<Language, any> = {
         { title: 'Shop Online', links: ['Cellux.jp', 'Rakuten Store', 'Back Market', 'Amazon'] }
       ],
       rights: '© 2026 MOBIZ合同会社。All rights reserved.',
-      regions: ['Japan', 'USA', 'EU', 'SEA', 'China', 'Korea', 'AU', 'ME']
+      regions: ['Japan', 'USA', 'EU', 'SEA', 'China', 'Korea', 'AU', 'ME'],
+      shipmentStats: {
+        label: 'Global Business Network',
+        value: '60+ Partners'
+      }
     }
   },
   jp: {
@@ -176,9 +189,15 @@ const translations: Record<Language, any> = {
       title: '質の高い製品を<br/>日本へ',
       subtitle: '高品質な製品の提供と効率的なグローバル・サプライチェーンを軸に、3つの事業を展開しています。',
       ecommerce: {
-        title: 'リユース品オンライン販売',
+        title: 'リユース・グローバルスマホ販売',
         description: '高品質なリフレッシュ品・中古品のオンライン販売。確かな品質管理とグローバルな配送体制。',
         link: '詳細はこちら',
+        stores: [
+          { name: 'Cellux.jp', url: 'https://cellux.jp' },
+          { name: '楽天市場', url: 'https://www.rakuten.co.jp/cellux/' },
+          { name: 'Back Market', url: 'https://www.backmarket.co.jp/ja-jp/s/mobizu/c1bae959-084c-48fd-804f-c2b186f0eb7b' },
+          { name: 'Amazon', url: 'https://www.amazon.co.jp/b?node=26286483051&language=en&ie=UTF8&marketplaceID=A1VC38T7YXB528&me=A2KP75Y62GZLJY' }
+        ],
         offerings: [
           { title: '認定リフレッシュ', desc: '専門技術者による50項目の厳格な検査と整備を実施。' },
           { title: 'マルチチャネル販売', desc: 'Amazon、楽天、Back Market等の主要モールでの戦略的展開。' },
@@ -201,17 +220,18 @@ const translations: Record<Language, any> = {
           { title: 'マーケットインテリジェンス', desc: 'データに基づいた市場トレンドの把握と調達戦略の立案。' }
         ]
       },
-      smartphones: {
-        title: 'グローバルスマホ販売',
-        description: '世界市場向けの端末販売と流通を専門。最新のスマホから高品質な中古端末まで。',
+      rental: {
+        title: 'レンタルサービス',
+        description: 'Apple、Samsung等の主要メーカーのスマホ・タブレットに対応した、国内外向けの柔軟なレンタルソリューション。イベント、法人利用、技術検証に最適。',
         link: '詳細はこちら',
+        contactButton: '詳細をお問い合わせ',
         offerings: [
-          { title: '主要ブランド取扱い', desc: '世界の主要メーカーの最新モデルを直接調達・流通。' },
-          { title: '認定中古端末', desc: '動作確認済みの高品質な中古端末を保証付きで提供。' },
-          { title: '法人向け卸売', desc: '世界中の小売店や企業向けの柔軟な大口販売ソリューション。' },
-          { title: '端末グレーディング', desc: '業界標準の評価基準による、価値の明確な端末提供。' },
-          { title: '高付加価値配送', desc: '電子機器に特化した安全な梱包と保険付き輸送サービス。' },
-          { title: '価格動向分析', desc: 'リアルタイムな市場価格追跡による、競争力のある価格設定。' }
+          { title: 'イベント利用', desc: 'カンファレンスや展示会向けのモバイル端末一括貸出。' },
+          { title: '法人向けリース', desc: '企業活動に必要なモバイルデバイスの柔軟な提供。' },
+          { title: '検証・テスト', desc: 'アプリ開発や品質検証向けの最新モデル貸出。' },
+          { title: '技術サポート', desc: '万全なテクニカルサポートと故障時の即時交換対応。' },
+          { title: '国内外配送', desc: '指定場所への迅速な配送と安全な梱包。' },
+          { title: '柔軟な契約', desc: '1日から数ヶ月まで、ニーズに合わせた期間設定。' }
         ]
       }
     },
@@ -238,7 +258,7 @@ const translations: Record<Language, any> = {
         message: 'メッセージ',
         submit: '送信する'
       },
-      options: ['事業を選択...', 'リユース品オンライン販売', 'グローバル調達サービス', 'グローバルスマホ販売', 'すべての事業']
+      options: ['事業を選択...', 'リユース・グローバルスマホ販売', 'グローバル調達サービス', 'レンタルサービス', 'すべての事業']
     },
     companyProfile: {
       tag: '会社概要',
@@ -267,13 +287,23 @@ const translations: Record<Language, any> = {
         { title: 'オンラインショップ', links: ['Cellux.jp', '楽天市場', 'Back Market', 'Amazon'] }
       ],
       rights: '© 2026 MOBIZ合同会社。All rights reserved.',
-      regions: ['日本', '米国', 'EU', '東南アジア', '中国', '韓国', '豪州', '中東']
+      regions: ['日本', '米国', 'EU', '東南アジア', '中国', '韓国', '豪州', '中東'],
+      shipmentStats: {
+        label: 'グローバル提携ネットワーク',
+        value: '60社以上のパートナー'
+      }
     }
   }
 };
 
 export default function App() {
-  const [lang, setLang] = useState<Language>('en');
+  const [lang, setLang] = useState<Language>(() => {
+    if (typeof navigator !== 'undefined') {
+      const browserLang = navigator.language.split('-')[0];
+      return browserLang === 'ja' ? 'jp' : 'en';
+    }
+    return 'en';
+  });
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -423,7 +453,7 @@ export default function App() {
         <div className="flex w-max animate-marquee whitespace-nowrap">
           {[1, 2, 3, 4].map(i => (
             <div key={i} className="flex">
-              {['Online Refurbished Sales', 'Global Procurement', 'Global Smartphone Sales', 'Quality Sourcing', 'Global Distribution'].map(text => (
+              {['Online Refurbished Sales', 'Global Procurement', 'Rental services', 'Quality Sourcing', 'Global Distribution'].map(text => (
                 <span key={text} className="px-8 text-[0.78rem] font-semibold tracking-[2px] uppercase text-white/30 flex items-center">
                   <span className="text-cyan-400 mr-8">✦</span> {text}
                 </span>
@@ -518,6 +548,7 @@ export default function App() {
                     description={t.services.ecommerce.description} 
                     link={t.services.ecommerce.link}
                     onClick={() => navigateTo('ecommerce')}
+                    stores={t.services.ecommerce.stores}
                   />
                   <ServiceCard 
                     icon={<Truck className="text-cyan-400" />} 
@@ -527,11 +558,18 @@ export default function App() {
                     onClick={() => navigateTo('logistics')}
                   />
                   <ServiceCard 
-                    icon={<Smartphone className="text-amber-400" />} 
-                    title={t.services.smartphones.title} 
-                    description={t.services.smartphones.description} 
-                    link={t.services.smartphones.link}
-                    onClick={() => navigateTo('smartphones')}
+                    icon={<Clock className="text-amber-400" />} 
+                    title={t.services.rental.title} 
+                    description={t.services.rental.description} 
+                    link={t.services.rental.link}
+                    onClick={() => navigateTo('rental')}
+                    contactLink={{
+                      text: t.services.rental.contactButton,
+                      onClick: () => {
+                        navigateTo('home');
+                        setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                      }
+                    }}
                   />
                 </div>
               </section>
@@ -577,8 +615,8 @@ export default function App() {
                         ))}
                       </div>
                       <div className="mt-6 p-4 bg-blue-600/10 rounded-xl border border-blue-600/20">
-                        <div className="text-[0.72rem] text-slate-400 mb-1.5">Active Shipments Today</div>
-                        <div className="text-[1.8rem] font-extrabold text-cyan-400">247</div>
+                        <div className="text-[0.72rem] text-slate-400 mb-1.5">{t.footer.shipmentStats.label}</div>
+                        <div className="text-[1.8rem] font-extrabold text-cyan-400">{t.footer.shipmentStats.value}</div>
                       </div>
                     </div>
                   </div>
@@ -644,10 +682,7 @@ export default function App() {
                     <p className="text-[0.87rem] text-white/55 leading-[1.7] mb-8">{t.contact.subtitle}</p>
                     <div className="flex flex-col gap-3.5">
                       <div className="flex items-center gap-3 text-white/65 text-[0.85rem]">
-                        <MapPin size={18} className="text-cyan-400" /> <span>Japan (HQ)</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-white/65 text-[0.85rem]">
-                        <Mail size={18} className="text-cyan-400" /> <span>hello@mobiz-solutions.com</span>
+                        <Mail size={18} className="text-cyan-400" /> <span>mobiz.customer@gmail.com</span>
                       </div>
                       <div className="flex items-center gap-3 text-white/65 text-[0.85rem]">
                         <MessageSquare size={18} className="text-cyan-400" /> <span>{t.contact.note}</span>
@@ -694,7 +729,7 @@ export default function App() {
           )}
 
           {/* Service Detail Pages */}
-          {(['ecommerce', 'logistics', 'smartphones'] as Page[]).includes(currentPage) && (
+          {(['ecommerce', 'logistics', 'rental'] as Page[]).includes(currentPage) && (
             <motion.div
               key={currentPage}
               initial={{ opacity: 0 }}
@@ -706,15 +741,46 @@ export default function App() {
               <div className="bg-radial-at-t from-blue-600/20 to-transparent text-center px-[5%] py-[80px] border-b border-white/10">
                 <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">SERVICES</div>
                 <h1 className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold tracking-tight mb-4">
-                  {currentPage === 'ecommerce' && t.nav.ecommerce}
-                  {currentPage === 'logistics' && t.nav.logistics}
-                  {currentPage === 'smartphones' && t.nav.smartphones}
+                  {currentPage === 'ecommerce' && t.services.ecommerce.title}
+                  {currentPage === 'logistics' && t.services.logistics.title}
+                  {currentPage === 'rental' && t.services.rental.title}
                 </h1>
-                <p className="text-base text-white/60 max-w-[560px] mx-auto leading-[1.7]">
+                <p className="text-base text-white/60 max-w-[560px] mx-auto leading-[1.7] mb-8">
                    {currentPage === 'ecommerce' && t.services.ecommerce.description}
                    {currentPage === 'logistics' && t.services.logistics.description}
-                   {currentPage === 'smartphones' && t.services.smartphones.description}
+                   {currentPage === 'rental' && t.services.rental.description}
                 </p>
+
+                {currentPage === 'rental' && (
+                  <button 
+                    onClick={() => {
+                      navigateTo('home');
+                      setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                    }}
+                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-[0.85rem] font-bold text-white hover:opacity-90 transition-all shadow-lg shadow-blue-900/20 cursor-pointer"
+                  >
+                    <Mail size={18} />
+                    {t.services.rental.contactButton}
+                  </button>
+                )}
+
+                {currentPage === 'ecommerce' && t.services.ecommerce.stores && (
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {t.services.ecommerce.stores.map((store: any, i: number) => (
+                      <a 
+                        key={i} 
+                        href={store.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-[0.85rem] font-bold text-white hover:bg-white/10 hover:border-blue-500/50 transition-all group"
+                      >
+                        <ShoppingCart size={16} className="text-cyan-400" />
+                        {store.name}
+                        <ExternalLink size={14} className="opacity-30 group-hover:opacity-100 transition-opacity" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
               
               <div className="max-w-[1100px] mx-auto px-[5%] py-[80px]">
@@ -727,7 +793,7 @@ export default function App() {
                        <div className="text-3xl mb-3.5">
                          {currentPage === 'ecommerce' && ['✨', '📦', '✔️', '🌍', '📊', '💬'][i]}
                          {currentPage === 'logistics' && ['🤝', '🎯', '🔍', '⚙️', '⚖️', '💡'][i]}
-                         {currentPage === 'smartphones' && ['📱', '🏢', '🤝', '📋', '🚚', '📈'][i]}
+                         {currentPage === 'rental' && ['⌚', '🏢', '🔬', '🛠️', '🚚', '📅'][i]}
                        </div>
                        <h4 className="text-[0.9rem] font-bold mb-2">{offering.title}</h4>
                        <p className="text-[0.8rem] text-white/50 leading-[1.6]">{offering.desc}</p>
@@ -827,21 +893,65 @@ export default function App() {
   );
 }
 
-function ServiceCard({ icon, title, description, link, onClick }: { icon: React.ReactNode, title: string, description: string, link: string, onClick: () => void }) {
+function ServiceCard({ icon, title, description, link, onClick, stores, contactLink }: { icon: React.ReactNode, title: string, description: string, link: string, onClick: () => void, stores?: { name: string, url: string }[], contactLink?: { text: string, onClick: () => void } }) {
   return (
     <div 
-      onClick={onClick} 
-      className="bg-white/4 border border-white/10 rounded-3xl p-8 cursor-pointer transition-all duration-300 relative overflow-hidden group hover:bg-white/7 hover:-translate-y-1 hover:border-blue-600/30"
+      onClick={stores || contactLink ? undefined : onClick} 
+      className={`bg-white/4 border border-white/10 rounded-3xl p-8 transition-all duration-300 relative overflow-hidden group ${stores || contactLink ? '' : 'cursor-pointer hover:bg-white/7 hover:-translate-y-1 hover:border-blue-600/30'}`}
     >
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      <div className="w-13 h-13 rounded-2xl bg-white/5 flex items-center justify-center mb-5 group-hover:bg-white/10 transition-colors">
-        {icon}
+      <div className="flex items-start justify-between mb-5">
+        <div className="w-13 h-13 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+          {icon}
+        </div>
+        {(stores || contactLink) ? (
+          <div className="flex gap-2">
+            {/* Visual indicators for sub-links could go here if needed */}
+          </div>
+        ) : (
+          <div className="text-[0.8rem] font-semibold text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
+            <ArrowRight size={18} />
+          </div>
+        )}
       </div>
+      
       <h3 className="text-[1.05rem] font-bold mb-2.5">{title}</h3>
       <p className="text-[0.85rem] text-white/55 leading-[1.65] mb-5">{description}</p>
-      <div className="text-[0.8rem] font-semibold text-cyan-400 flex items-center gap-1.5 transition-all group-hover:gap-2.5">
-        {link} <ArrowRight size={14} />
-      </div>
+      
+      {stores && (
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          {stores.map((store, i) => (
+            <a 
+              key={i} 
+              href={store.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/5 text-[0.78rem] text-white/70 hover:text-white hover:bg-white/10 hover:border-white/10 transition-all group/link"
+            >
+              <span>{store.name}</span>
+              <ExternalLink size={12} className="opacity-40 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 transition-all text-cyan-400" />
+            </a>
+          ))}
+        </div>
+      )}
+
+      {contactLink && (
+        <button 
+          onClick={(e) => { e.stopPropagation(); contactLink.onClick(); }}
+          className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-[0.8rem] font-bold text-white hover:bg-white/10 hover:border-blue-500/50 transition-all cursor-pointer group"
+        >
+          <Mail size={16} className="text-cyan-400" />
+          {contactLink.text}
+          <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ml-auto" />
+        </button>
+      )}
+
+      {!(stores || contactLink) && (
+        <div className="text-[0.8rem] font-semibold text-cyan-400 flex items-center gap-1.5 transition-all group-hover:gap-2.5 mt-auto">
+          {link} <ArrowRight size={14} />
+        </div>
+      )}
     </div>
   );
 }
