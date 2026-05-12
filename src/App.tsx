@@ -34,6 +34,7 @@ const translations: Record<Language, any> = {
     nav: {
       home: 'Home',
       services: 'Services',
+      news: 'News',
       company: 'Company Info',
       contact: 'Contact'
     },
@@ -57,17 +58,41 @@ const translations: Record<Language, any> = {
       ecommerce: {
         title: 'Online Refurbished Sales',
         description: 'Selling certified refurbished and used products online. Quality guaranteed sourcing and global fulfillment.',
-        link: 'Learn more'
+        link: 'Learn more',
+        offerings: [
+          { title: 'Certified Refurbishment', desc: 'Rigorous 50-point inspection and restoration by expert technicians.' },
+          { title: 'Multi-Platform Sales', desc: 'Strategic presence on Amazon, Rakuten, Back Market, and specialized marketplaces.' },
+          { title: 'Quality Assurance', desc: 'Comprehensive grading system ensuring transparency for every used product.' },
+          { title: 'Global Fulfillment', desc: 'Secure packaging and rapid delivery to customers across international borders.' },
+          { title: 'Inventory Management', desc: 'Real-time stock tracking and optimization for high-demand consumer electronics.' },
+          { title: 'Client Support', desc: 'Dedicated multilingual customer service for a seamless buying experience.' }
+        ]
       },
       logistics: {
         title: 'Global Procurement',
         description: 'Procuring products globally from trusted suppliers. Expert sourcing, quality control, and supply chain management.',
-        link: 'Learn more'
+        link: 'Learn more',
+        offerings: [
+          { title: 'Supplier Network', desc: 'Access to a vetted network of global suppliers for diverse product categories.' },
+          { title: 'Strategic Sourcing', desc: 'Finding the best quality products at the most competitive global prices.' },
+          { title: 'Quality Audits', desc: 'On-site inspections and quality control to ensure compliance with standards.' },
+          { title: 'Supply Chain Optimization', desc: 'Streamlining procurement flows to reduce lead times and costs.' },
+          { title: 'Customs Expertise', desc: 'Handling complex international import/export regulations and duty compliance.' },
+          { title: 'Market Intelligence', desc: 'Data-driven insights to identify emerging trends and sourcing opportunities.' }
+        ]
       },
       smartphones: {
         title: 'Global Smartphone Sales',
         description: 'Specializing in global smartphone distribution. New and certified pre-owned devices for international markets.',
-        link: 'Learn more'
+        link: 'Learn more',
+        offerings: [
+          { title: 'International Brands', desc: 'Direct access to the latest models from major global smartphone manufacturers.' },
+          { title: 'Certified Pre-owned', desc: 'High-quality used devices fully tested and backed by our warranty.' },
+          { title: 'Bulk Distribution', desc: 'Scalable wholesale solutions for businesses and retail partners worldwide.' },
+          { title: 'Device Grading', desc: 'Industry-standard grading (A/B/C) providing clear value for every device.' },
+          { title: 'Secure Tech Logistics', desc: 'Specialized handling and insurance for high-value electronic shipments.' },
+          { title: 'Price Analytics', desc: 'Real-time market price tracking to ensure competitive rates for our clients.' }
+        ]
       }
     },
     features: {
@@ -88,6 +113,7 @@ const translations: Record<Language, any> = {
       labels: {
         name: 'FULL NAME',
         email: 'EMAIL',
+        company: 'COMPANY NAME (OPTIONAL)',
         service: 'DIVISION INTEREST',
         message: 'MESSAGE',
         submit: 'Send Message'
@@ -105,12 +131,20 @@ const translations: Record<Language, any> = {
         { label: 'License', value: 'Antique Dealer License: Chiba Prefectural Public Safety Commission No. 441060001263' }
       ]
     },
+    latestNews: {
+      tag: 'LATEST NEWS',
+      title: 'Company Updates',
+      items: [
+        { date: '2024.05.10', title: 'New Strategic Sourcing Partnership in Southeast Asia', type: 'Partnership' },
+        { date: '2024.04.22', title: 'MOBIZ LLC Expands Refurbished Electronics Inventory', type: 'Inventory' },
+        { date: '2024.03.15', title: 'Official Launch of the Global Procurement Division', type: 'Division' }
+      ]
+    },
     footer: {
       description: 'Your trusted partner for global procurement and refurbished product sales.',
       columns: [
-        { title: 'Divisions', links: ['Refurbished Sales', 'Global Procurement', 'Global Smartphones'] },
-        { title: 'Company', links: ['About Us', 'Careers', 'Blog'] },
-        { title: 'Contact', links: ['hello@mobiz.com', 'Japan Office', 'Support'] }
+        { title: 'Quick Links', links: ['About', 'Services', 'News', 'Company Info', 'Contact'] },
+        { title: 'Shop Online', links: ['Cellux.jp', 'Rakuten Store', 'Back Market', 'Amazon'] }
       ],
       rights: '© 2026 MOBIZ合同会社。All rights reserved.',
       regions: ['Japan', 'USA', 'EU', 'SEA', 'China', 'Korea', 'AU', 'ME']
@@ -120,6 +154,7 @@ const translations: Record<Language, any> = {
     nav: {
       home: 'ホーム',
       services: 'サービス',
+      news: 'ニュース',
       company: '会社情報',
       contact: 'お問い合わせ'
     },
@@ -138,22 +173,46 @@ const translations: Record<Language, any> = {
     ],
     services: {
       tag: '事業紹介',
-      title: '質の高い製品を<br/>世界中へ',
+      title: '質の高い製品を<br/>日本へ',
       subtitle: '高品質な製品の提供と効率的なグローバル・サプライチェーンを軸に、3つの事業を展開しています。',
       ecommerce: {
         title: 'リユース品オンライン販売',
         description: '高品質なリフレッシュ品・中古品のオンライン販売。確かな品質管理とグローバルな配送体制。',
-        link: '詳細はこちら'
+        link: '詳細はこちら',
+        offerings: [
+          { title: '認定リフレッシュ', desc: '専門技術者による50項目の厳格な検査と整備を実施。' },
+          { title: 'マルチチャネル販売', desc: 'Amazon、楽天、Back Market等の主要モールでの戦略的展開。' },
+          { title: '品質保証体制', desc: '透明性の高い独自のグレーディングシステムによる品質管理。' },
+          { title: 'グローバル配送', desc: '国際配送に対応した安全な梱包と迅速なデリバリーサービス。' },
+          { title: '在庫最適化', desc: '需要動向に基づいたリアルタイムな在庫管理と供給体制。' },
+          { title: 'カスタマーサポート', desc: '多言語対応による、安心・安全な購入体験の提供。' }
+        ]
       },
       logistics: {
         title: 'グローバル調達サービス',
         description: '世界中から最適な製品を調達。サプライヤー選定から品質管理、管理体制の構築まで。',
-        link: '詳細はこちら'
+        link: '詳細はこちら',
+        offerings: [
+          { title: 'サプライヤーネットワーク', desc: '世界各地の信頼できるサプライヤーとの広範な提携網。' },
+          { title: '戦略的ソーシング', desc: '高品質な製品を世界市場から最適な価格で調達。' },
+          { title: '品質監査', desc: '現地での検品と厳格なクオリティコントロールの実施。' },
+          { title: 'サプライチェーン最適化', desc: 'リードタイム短縮とコスト削減を実現する物流構築。' },
+          { title: '輸出入コンプライアンス', desc: '複雑な国際規制や関税手続きへの確実な対応。' },
+          { title: 'マーケットインテリジェンス', desc: 'データに基づいた市場トレンドの把握と調達戦略の立案。' }
+        ]
       },
       smartphones: {
         title: 'グローバルスマホ販売',
         description: '世界市場向けの端末販売と流通を専門。最新のスマホから高品質な中古端末まで。',
-        link: '詳細はこちら'
+        link: '詳細はこちら',
+        offerings: [
+          { title: '主要ブランド取扱い', desc: '世界の主要メーカーの最新モデルを直接調達・流通。' },
+          { title: '認定中古端末', desc: '動作確認済みの高品質な中古端末を保証付きで提供。' },
+          { title: '法人向け卸売', desc: '世界中の小売店や企業向けの柔軟な大口販売ソリューション。' },
+          { title: '端末グレーディング', desc: '業界標準の評価基準による、価値の明確な端末提供。' },
+          { title: '高付加価値配送', desc: '電子機器に特化した安全な梱包と保険付き輸送サービス。' },
+          { title: '価格動向分析', desc: 'リアルタイムな市場価格追跡による、競争力のある価格設定。' }
+        ]
       }
     },
     features: {
@@ -174,6 +233,7 @@ const translations: Record<Language, any> = {
       labels: {
         name: 'お名前',
         email: 'メールアドレス',
+        company: '会社名（任意）',
         service: 'ご興味の事業',
         message: 'メッセージ',
         submit: '送信する'
@@ -191,12 +251,20 @@ const translations: Record<Language, any> = {
         { label: '古物商許可', value: '千葉県公安委員会 第441060001263号' }
       ]
     },
+    latestNews: {
+      tag: '最新ニュース',
+      title: 'お知らせ',
+      items: [
+        { date: '2024.05.10', title: '東南アジアにおける戦略的調達パートナーシップを締結', type: '提携' },
+        { date: '2024.04.22', title: 'リユース電子機器の在庫ラインナップを大幅に拡充', type: '在庫' },
+        { date: '2024.03.15', title: 'グローバル調達部門を正式に新設しました', type: '部門' }
+      ]
+    },
     footer: {
       description: 'グローバル調達とリユース品販売の信頼できるパートナー。',
       columns: [
-        { title: '事業内容', links: ['リユース品販売', 'グローバル調達', 'グローバルスマホ'] },
-        { title: '会社情報', links: ['会社概要', '採用情報', 'ブログ'] },
-        { title: 'お問い合わせ', links: ['hello@mobiz.com', '日本オフィス', 'サポート'] }
+        { title: 'クイックリンク', links: ['概要', 'サービス', 'ニュース', '企業情報', 'お問い合わせ'] },
+        { title: 'オンラインショップ', links: ['Cellux.jp', '楽天市場', 'Back Market', 'Amazon'] }
       ],
       rights: '© 2026 MOBIZ合同会社。All rights reserved.',
       regions: ['日本', '米国', 'EU', '東南アジア', '中国', '韓国', '豪州', '中東']
@@ -268,6 +336,17 @@ export default function App() {
             <button 
               onClick={() => {
                 if (currentPage !== 'home') navigateTo('home');
+                setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
+              }}
+              className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
+            >
+              {t.nav.news}
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => {
+                if (currentPage !== 'home') navigateTo('home');
                 setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
               }}
               className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
@@ -324,6 +403,9 @@ export default function App() {
               </li>
               <li>
                 <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.services}</button>
+              </li>
+              <li>
+                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.news}</button>
               </li>
               <li>
                 <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.company}</button>
@@ -503,6 +585,38 @@ export default function App() {
                 </div>
               </section>
 
+              {/* News Section */}
+              <section id="news-section" className="max-w-[1200px] mx-auto px-[5%] py-[100px] border-t border-white/10">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                  <div>
+                    <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.latestNews.tag}</div>
+                    <h2 className="text-[clamp(1.8rem,3vw,2.8rem)] font-extrabold tracking-tight leading-[1.15]">{t.latestNews.title}</h2>
+                  </div>
+                  <button className="text-[0.85rem] font-bold text-white/40 hover:text-cyan-400 transition-colors flex items-center gap-2 group cursor-pointer">
+                    VIEW ALL NEWS <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+                
+                <div className="flex flex-col gap-4">
+                  {t.latestNews.items.map((item: any, idx: number) => (
+                    <motion.div 
+                      key={idx}
+                      whileHover={{ x: 10 }}
+                      className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-10 p-6 rounded-2xl bg-white/3 border border-white/10 hover:bg-white/6 hover:border-white/20 transition-all cursor-pointer"
+                    >
+                      <div className="text-[0.85rem] font-mono text-white/30">{item.date}</div>
+                      <div className="px-3 py-1 rounded-full bg-white/5 text-[0.65rem] font-bold text-cyan-400 border border-white/10 w-fit">
+                        {item.type}
+                      </div>
+                      <div className="text-[1rem] font-bold text-white/80 group-hover:text-white transition-colors flex-1">
+                        {item.title}
+                      </div>
+                      <ChevronRight size={18} className="hidden md:block text-white/20 group-hover:text-cyan-400 transition-colors" />
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+
               {/* Company Profile Section */}
               <section id="company-profile-section" className="max-w-[1200px] mx-auto px-[5%] py-[100px] border-t border-white/10">
                 <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.companyProfile.tag}</div>
@@ -548,17 +662,23 @@ export default function App() {
                         <input required type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
                       </div>
                       <div className="flex flex-col gap-1.5">
+                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.company}</label>
+                        <input type="text" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1.5">
                         <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.email}</label>
                         <input required type="email" className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8" />
                       </div>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.service}</label>
-                      <select required className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 appearance-none">
-                        {t.contact.options.map((opt: string, idx: number) => (
-                           <option key={idx} value={idx === 0 ? "" : idx} className="bg-navy-light">{opt}</option>
-                        ))}
-                      </select>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.service}</label>
+                        <select required className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-[0.87rem] outline-none transition-all focus:border-blue-600/60 focus:bg-blue-600/8 appearance-none cursor-pointer">
+                          {t.contact.options.map((opt: string, idx: number) => (
+                             <option key={idx} value={idx === 0 ? "" : idx} className="bg-navy-light">{opt}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[0.75rem] font-semibold text-white/60 tracking-wider uppercase">{t.contact.labels.message}</label>
@@ -591,26 +711,26 @@ export default function App() {
                   {currentPage === 'smartphones' && t.nav.smartphones}
                 </h1>
                 <p className="text-base text-white/60 max-w-[560px] mx-auto leading-[1.7]">
-                  {currentPage === 'ecommerce' && t.nav.ecommerce + " explanation would go here."}
-                  {currentPage === 'logistics' && t.nav.logistics + " explanation would go here."}
-                  {currentPage === 'smartphones' && t.nav.smartphones + " explanation would go here."}
+                   {currentPage === 'ecommerce' && t.services.ecommerce.description}
+                   {currentPage === 'logistics' && t.services.logistics.description}
+                   {currentPage === 'smartphones' && t.services.smartphones.description}
                 </p>
               </div>
               
               <div className="max-w-[1100px] mx-auto px-[5%] py-[80px]">
-                <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">WHAT WE OFFER</div>
+                <div className="text-[0.72rem] font-bold tracking-[3px] uppercase text-cyan-400 mb-3">{t.services.tag}</div>
                 <h2 className="text-4xl font-extrabold tracking-tight mb-12">Expert Solutions For<br/>Your Growing Business</h2>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {Array.from({ length: 6 }).map((_, i) => (
+                  {t.services[currentPage].offerings.map((offering: any, i: number) => (
                     <div key={i} className="bg-white/4 border border-white/10 rounded-2xl p-6 transition-all hover:bg-white/7 hover:border-blue-600/30 hover:-translate-y-0.5">
                        <div className="text-3xl mb-3.5">
-                         {currentPage === 'ecommerce' && ['🛒', '📝', '💳', '🎧', '📦', '📊'][i]}
-                         {currentPage === 'logistics' && ['🚢', '🛃', '🏭', '🚪', '📡', '🔄'][i]}
-                         {currentPage === 'smartphones' && ['📱', '🏢', '🔍', '✈️', '🔄', '🔓'][i]}
+                         {currentPage === 'ecommerce' && ['✨', '📦', '✔️', '🌍', '📊', '💬'][i]}
+                         {currentPage === 'logistics' && ['🤝', '🎯', '🔍', '⚙️', '⚖️', '💡'][i]}
+                         {currentPage === 'smartphones' && ['📱', '🏢', '🤝', '📋', '🚚', '📈'][i]}
                        </div>
-                       <h4 className="text-[0.9rem] font-bold mb-2">Service Point {i + 1}</h4>
-                       <p className="text-[0.8rem] text-white/50 leading-[1.6]">Specialized support and management for your cross-border operations.</p>
+                       <h4 className="text-[0.9rem] font-bold mb-2">{offering.title}</h4>
+                       <p className="text-[0.8rem] text-white/50 leading-[1.6]">{offering.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -628,21 +748,56 @@ export default function App() {
 
       {/* Footer */}
       <footer className="px-[5%] pt-[60px] pb-[30px] border-t border-white/10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2.5 text-[1.2rem] font-extrabold tracking-tight mb-3.5">
               <div className="w-9 h-9 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white text-[1.1rem]">M</div>
               <span>Mobiz<span className="text-cyan-400">.</span></span>
             </div>
-            <p className="text-[0.82rem] text-slate-400 leading-[1.7] max-w-[260px]">{t.footer.description}</p>
+            <div className="text-[0.82rem] text-slate-400 leading-[1.7] max-w-[320px]">
+              <p className="font-bold text-white mb-2">MOBIZ LLC / MOBIZ合同会社</p>
+              <p>〒105-0013</p>
+              <p>{lang === 'en' ? '2-2-15 Hamamatsucho Dia Building 2F, Hamamatsucho, Minato-ku, Tokyo' : '東京都港区浜松町2-2-15'}</p>
+              <p>{lang === 'en' ? '' : '浜松町ダイヤビル2F'}</p>
+              <p className="mt-4 opacity-70">{t.footer.description}</p>
+            </div>
           </div>
           {t.footer.columns.map((col: any, idx: number) => (
             <div key={idx}>
               <h5 className="text-[0.78rem] font-bold tracking-[2px] uppercase text-slate-400 mb-4">{col.title}</h5>
               <div className="flex flex-col gap-2.5">
-                {col.links.map((link: string, lIdx: number) => (
-                  <a key={lIdx} className="text-[0.82rem] text-white/55 hover:text-white cursor-pointer transition-colors">{link}</a>
-                ))}
+                {col.links.map((link: string, lIdx: number) => {
+                  const isQuickLink = col.title === 'Quick Links' || col.title === 'クイックリンク';
+                  const isShopLink = col.title === 'Shop Online' || col.title === 'オンラインショップ';
+                  
+                  let onClick = undefined;
+                  let href = "#";
+                  
+                  if (isQuickLink) {
+                    if (lIdx === 0 || lIdx === 3) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+                    if (lIdx === 1) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+                    if (lIdx === 2) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+                    if (lIdx === 4) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+                  } else if (isShopLink) {
+                    if (link === 'Cellux.jp') href = 'https://cellux.jp';
+                    if (link === 'Rakuten Store' || link === '楽天市場') href = 'https://www.rakuten.co.jp/cellux/';
+                    if (link === 'Back Market') href = 'https://www.backmarket.co.jp/ja-jp/s/mobizu/c1bae959-084c-48fd-804f-c2b186f0eb7b';
+                    if (link === 'Amazon') href = 'https://www.amazon.co.jp/b?node=26286483051&language=en&ie=UTF8&marketplaceID=A1VC38T7YXB528&me=A2KP75Y62GZLJY';
+                  }
+
+                  return (
+                    <a 
+                      key={lIdx} 
+                      href={href}
+                      target={href !== '#' ? "_blank" : undefined}
+                      rel={href !== '#' ? "noopener noreferrer" : undefined}
+                      onClick={(e) => { if (onClick) { e.preventDefault(); onClick(); } }} 
+                      className="text-[0.82rem] text-white/55 hover:text-white cursor-pointer transition-colors"
+                    >
+                      {link}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           ))}
