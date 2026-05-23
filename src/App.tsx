@@ -140,7 +140,6 @@ const translations: Record<Language, any> = {
       details: [
         { label: 'Company Name', value: 'MOBIZ LLC (MOBIZ合同会社)' },
         { label: 'Headquarters', value: '2-2-15 Hamamatsucho Dia Building 2F, Hamamatsucho, Minato-ku, Tokyo 105-0013' },
-        { label: 'Email', value: 'mobiz.customer@gmail.com' },
         { label: 'Business Capacity', value: 'Mon-Fri: 10:00 - 17:00' },
         { label: 'License', value: 'Antique Dealer License: Chiba Prefectural Public Safety Commission No. 441060001263' }
       ]
@@ -276,7 +275,6 @@ const translations: Record<Language, any> = {
       details: [
         { label: '会社名', value: 'MOBIZ LLC (MOBIZ合同会社)' },
         { label: '所在地', value: '〒105-0013 東京都港区浜松町2-2-15 浜松町ダイヤビル2F' },
-        { label: 'メールアドレス', value: 'mobiz.customer@gmail.com' },
         { label: '営業時間', value: '月-金: 10:00 - 17:00' },
         { label: '古物商許可', value: '千葉県公安委員会 第441060001263号' }
       ]
@@ -320,6 +318,7 @@ export default function App() {
   const [toastVisible, setToastVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [scrollTarget, setScrollTarget] = useState<string | null>(null);
 
   const t = translations[lang];
 
@@ -331,10 +330,50 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigateTo = (page: Page) => {
-    setCurrentPage(page);
+  useEffect(() => {
+    if (!scrollTarget) {
+      window.scrollTo(0, 0);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (scrollTarget) {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        const el = document.getElementById(scrollTarget);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          clearInterval(interval);
+          setScrollTarget(null);
+        }
+        attempts++;
+        if (attempts > 30) {
+          clearInterval(interval);
+          setScrollTarget(null);
+        }
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [scrollTarget, currentPage]);
+
+  const navigateTo = (page: Page, sectionId?: string) => {
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (page !== currentPage) {
+      if (sectionId) {
+        setScrollTarget(sectionId);
+      }
+      setCurrentPage(page);
+    } else {
+      if (sectionId) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
@@ -356,6 +395,9 @@ export default function App() {
           ...data,
           _replyto: data.email,
           _subject: `Contact Form: ${data.name} via Mobiz Website`,
+          _to: 'mobiz.customer@gmail.com',
+          to: 'mobiz.customer@gmail.com',
+          message: `${data.message}\n\n---\nSelected Service: ${data.service}`
         })
       });
 
@@ -393,10 +435,7 @@ export default function App() {
           </li>
           <li>
             <button 
-              onClick={() => {
-                if (currentPage !== 'home') navigateTo('home');
-                setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-              }}
+              onClick={() => navigateTo('home', 'services-section')}
               className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
             >
               {t.nav.services}
@@ -404,10 +443,7 @@ export default function App() {
           </li>
           <li>
             <button 
-              onClick={() => {
-                if (currentPage !== 'home') navigateTo('home');
-                setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-              }}
+              onClick={() => navigateTo('home', 'news-section')}
               className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
             >
               {t.nav.news}
@@ -415,10 +451,7 @@ export default function App() {
           </li>
           <li>
             <button 
-              onClick={() => {
-                if (currentPage !== 'home') navigateTo('home');
-                setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-              }}
+              onClick={() => navigateTo('home', 'company-profile-section')}
               className="text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
             >
               {t.nav.company}
@@ -426,7 +459,7 @@ export default function App() {
           </li>
         </ul>
 
-        <div className="flex items-center gap-3">
+         <div className="flex items-center gap-3">
           <div className="flex items-center bg-white/8 border border-white/10 rounded-full overflow-hidden">
             <button 
               onClick={() => setLang('en')}
@@ -442,10 +475,7 @@ export default function App() {
             </button>
           </div>
           <button 
-            onClick={() => {
-              if (currentPage !== 'home') navigateTo('home');
-              setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-            }}
+            onClick={() => navigateTo('home', 'contact-section')}
             className="hidden md:block px-[18px] py-[8px] rounded-lg bg-linear-to-br from-blue-600 to-cyan-500 text-white text-[0.8rem] font-semibold transition-opacity hover:opacity-85 cursor-pointer"
           >
             {t.nav.contact}
@@ -472,16 +502,16 @@ export default function App() {
                 <button onClick={() => navigateTo('home')} className="text-xl font-semibold text-white/80">{t.nav.home}</button>
               </li>
               <li>
-                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.services}</button>
+                <button onClick={() => navigateTo('home', 'services-section')} className="text-xl font-semibold text-white/80">{t.nav.services}</button>
               </li>
               <li>
-                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.news}</button>
+                <button onClick={() => navigateTo('home', 'news-section')} className="text-xl font-semibold text-white/80">{t.nav.news}</button>
               </li>
               <li>
-                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.company}</button>
+                <button onClick={() => navigateTo('home', 'company-profile-section')} className="text-xl font-semibold text-white/80">{t.nav.company}</button>
               </li>
               <li>
-                <button onClick={() => { navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-xl font-semibold text-white/80">{t.nav.contact}</button>
+                <button onClick={() => navigateTo('home', 'contact-section')} className="text-xl font-semibold text-white/80">{t.nav.contact}</button>
               </li>
             </ul>
           </motion.div>
@@ -605,10 +635,7 @@ export default function App() {
                     onClick={() => navigateTo('rental')}
                     contactLink={{
                       text: t.services.rental.contactButton,
-                      onClick: () => {
-                        navigateTo('home');
-                        setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-                      }
+                      onClick: () => navigateTo('home', 'contact-section')
                     }}
                   />
                 </div>
@@ -722,9 +749,6 @@ export default function App() {
                     <p className="text-[0.87rem] text-white/55 leading-[1.7] mb-8">{t.contact.subtitle}</p>
                     <div className="flex flex-col gap-3.5">
                       <div className="flex items-center gap-3 text-white/65 text-[0.85rem]">
-                        <Mail size={18} className="text-cyan-400" /> <span>mobiz.customer@gmail.com</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-white/65 text-[0.85rem]">
                         <MessageSquare size={18} className="text-cyan-400" /> <span>{t.contact.note}</span>
                       </div>
                     </div>
@@ -826,10 +850,7 @@ export default function App() {
 
                 {currentPage === 'rental' && (
                   <button 
-                    onClick={() => {
-                      navigateTo('home');
-                      setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
-                    }}
+                    onClick={() => navigateTo('home', 'contact-section')}
                     className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-[0.85rem] font-bold text-white hover:opacity-90 transition-all shadow-lg shadow-blue-900/20 cursor-pointer"
                   >
                     <Mail size={18} />
@@ -875,8 +896,11 @@ export default function App() {
                 </div>
 
                 <div className="mt-12 text-center">
-                  <button onClick={() => navigateTo('home')} className="px-7 py-3 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-white font-bold transition-opacity hover:opacity-90 shadow-lg cursor-pointer">
-                    Get Started →
+                  <button 
+                    onClick={() => navigateTo('home', 'contact-section')} 
+                    className="px-7 py-3 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 text-white font-bold transition-opacity hover:opacity-90 shadow-lg cursor-pointer"
+                  >
+                    {lang === 'en' ? 'Contact Us →' : 'お問い合わせはこちら →'}
                   </button>
                 </div>
               </div>
@@ -913,10 +937,10 @@ export default function App() {
                   let href = "#";
                   
                   if (isQuickLink) {
-                    if (lIdx === 0 || lIdx === 3) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('company-profile-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
-                    if (lIdx === 1) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
-                    if (lIdx === 2) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('news-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
-                    if (lIdx === 4) onClick = () => { navigateTo('home'); setTimeout(() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+                    if (lIdx === 0 || lIdx === 3) onClick = () => navigateTo('home', 'company-profile-section');
+                    if (lIdx === 1) onClick = () => navigateTo('home', 'services-section');
+                    if (lIdx === 2) onClick = () => navigateTo('home', 'news-section');
+                    if (lIdx === 4) onClick = () => navigateTo('home', 'contact-section');
                   } else if (isShopLink) {
                     if (link === 'Cellux.jp') href = 'https://cellux.jp';
                     if (link === 'Rakuten Store' || link === '楽天市場') href = 'https://www.rakuten.co.jp/cellux/';
